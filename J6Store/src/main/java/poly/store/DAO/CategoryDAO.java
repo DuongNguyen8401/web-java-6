@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import poly.store.entity.Category;
 
 public interface CategoryDAO extends JpaRepository<Category, Integer>{
-	@Query("SELECT entity FROM Category entity WHERE id=:id")
+	@Query("SELECT c FROM Category c WHERE id=:id")
 	public Category findById(@Param("id") String id);
 
 

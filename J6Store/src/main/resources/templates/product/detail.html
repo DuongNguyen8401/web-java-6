@@ -2,13 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/index :: dynamic(~{:: main})}">
 	
-	<body>
+	<!-- <body>
 	<main>
-	<a> </a>
-	<a> </a>
+	<h1>chi tiet</h1>
+		<h1>[[${item.name}]]</h1>
+		
+		<h1>cung loai</h1>
+			<h1>[[${item.category.name}]]</h1>
+	
+	
+	<ul>
+	<li th:each="p:${item.category.products}">
+	<a th:href="@{|/product/detail/${p.id}|}">[[${p.name}]]</a>
+	</li>
+	</ul>
 	</main>
-	</body>
-<!--  
+	</body> -->
+	
+
 <body>
 	<main th:object="${item}" class="poly-item-detail">
 		<div class="row">
@@ -16,7 +27,7 @@
 				<div class="panel-heading">Chi tiet mat hang</div>
 				<div class="panel-body text-center">
 					<img alt="is nothing in here :v"
-						th:src="@{|/assets/images/${p.image}|}">
+						th:src="@{|/assets/images/*{image}|}">
 				</div>
 			</div>
 
@@ -29,9 +40,9 @@
 						<li th:text="*{category.name}" />
 					</ul>
 				</div>
-				<div class="panel-footer text-rigt">
-					<button class="btn btn-success"></button>
-					<i class="glyphicon glyphicon-shopping-cart"></i>
+				<div class="panel-footer text-right">
+					<button class="btn btn-success"><i class="glyphicon glyphicon-shopping-cart"></i></button>
+					
 				</div>
 			</div>
 		</div>
@@ -40,12 +51,12 @@
 				<div class="panel-heading">Hang Cung Loai</div>
 				<div class="panel-body">
 					<ul>
-						<li th:each="p:*{category.product}"><a
+						<li th:each="p:*{category.products}"><a
 							th:href="@{|/product/detail/${p.id}|}" th:text="${p.name}"></a></li>
 					</ul>
 				</div>
-			</div>
+			</div> 
 		</div>
 	</main>
-</body> -->
+</body> 
 </html>

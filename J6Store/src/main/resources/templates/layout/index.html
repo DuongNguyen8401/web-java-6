@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
 
 <head>
- <meta charset="UTF-8"> 
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>j6 Project</title>
@@ -18,7 +18,8 @@
 <!--   <link href="/assets/css/shopping-cart-app.css" rel="stylesheet"/> -->
 </head>
 
-<body class="container">
+<body class="container" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
 	<header class="row"></header>
 	<nav class="row">
 		<div th:replace="/layout/_menu.html"></div>
@@ -32,6 +33,15 @@
 			<div th:replace="/layout/_category.html"></div>
 		</aside>
 	</div>
-	<footer class="row"> Web credit by me </footer>
+	<footer class="row">
+		<div class="panel panel-default">
+			<div class="panel-body text-center">
+				<h4>Web credit by me</h4>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="/assets/js/shopping-cart-app.js">
+		
+	</script>
 </body>
 </html>
