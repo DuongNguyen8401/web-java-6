@@ -60,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.defaultSuccessUrl("/security/login/success",false)
 		.failureUrl("/security/login/error");
 		
+		
 		http.rememberMe()
 		.tokenValiditySeconds(86400);
 		

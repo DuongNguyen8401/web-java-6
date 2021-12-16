@@ -14,18 +14,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>ID</td>
-				<td>Name</td>
-				<td>Price</td>
-				<td>Create Date</td>
-				<td>Image</td>
-				<td>Category</td>
-				<td>Available</td>
+			<tr ng-repeat="item in pager.items">
+				<td>{{item.id}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.price | number : 2}}</td>
+				<td>{{item.createDate | date : 'dd-MM-yyyy'}}</td>
+				<td>{{item.image}}</td>
+				<td>{{item.category.name}}</td>
+				<td>{{item.available?'Yes':'No'}}</td>
 				<td>
 					<div class="btn-group btn-group-xs">
-						<button class="btn btn-warning glyphicon glyphicon-edit"></button>
-						<button class="btn btn-warning glyphicon glyphicon-trash"></button>
+						<button ng-click="edit(item)" class="btn btn-warning glyphicon glyphicon-edit"></button>
+						<button ng-click="delete(item)" class="btn btn-warning glyphicon glyphicon-trash"></button>
 					</div>
 
 				</td>
@@ -34,17 +34,17 @@
 		</tbody>
 	</table>
 	<div class="panel-footer text-center">
-		<button class="btn btn-danger">
+		<button ng-click = "pager.first()" class="btn btn-danger">
 			<b class="glyphicon glyphicon-hand-up"></b>
 		</button>
-		<button class="btn btn-primary">
+		<button ng-click = "pager.prev()" class="btn btn-primary">
 			<b class="glyphicon glyphicon-hand-left"></b>
 		</button>
-		<button class="btn btn-success">1 to 15</button>
-		<button class="btn btn-primary">
+		<button  class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+		<button ng-click = "pager.next()" class="btn btn-primary">
 			<b class="glyphicon glyphicon-hand-right"></b>
 		</button>
-		<button class="btn btn-danger">
+		<button ng-click = "pager.last()" class="btn btn-danger">
 			<b class="glyphicon glyphicon-hand-down"></b>
 		</button>
 	</div>

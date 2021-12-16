@@ -1,6 +1,7 @@
 package poly.store.rest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,46 +9,39 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import poly.store.entity.Product;
-import poly.store.service.ProductService;
+
+import poly.store.entity.Authority;
+
+import poly.store.service.AuthorityService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/products")
-public class ProductRestController {
+@RequestMapping("/rest/authorities")
+public class AuthorityRestController {
 	@Autowired
-	ProductService productService;
-
-	@GetMapping()
-	public List<Product> getAll() {
-		return productService.findAll();
-
+	AuthorityService authorityService;
+		
+	@GetMapping
+	public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin){
+		if (admin.orElse(false)) {
+			return authorityService.findAuthoritiesOfAdministrators();
+		}
+		return authorityService.findAll();
 	}
 	
-	@PutMapping("{id}")
-	public Product update(@PathVariable("id") Integer id, @RequestBody Product product) {
-		return productService.update(product);
-	}
-	
-
-	@GetMapping("{id}")
-	public Product getOne(@PathVariable("id") Integer id) {
-		return productService.findById(id);
-
-	}
-
 	@PostMapping
-	public Product create(@RequestBody Product product) {
-		return productService.create(product);
+	public Authority post(@RequestBody Authority auth) {
+		return authorityService.create(auth);
 	}
-	
+
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		 productService.delete(id);
+		authorityService.delete(id);
+		
 	}
 }
